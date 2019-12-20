@@ -1,0 +1,15 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorCloud</item>
+        <item name="colorPrimaryDark">@color/colorCloud</item>
+        <item name="colorAccent">@color/colorDigitalRed</item>
+    </style>
+
+    <style name="LoadingTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorDigitalRed</item>
+        <item name="colorPrimaryDark">@color/colorDigitalGray</item>
+        <item name="colorAccent">@color/colorCloud</item>
+    </style>
+
+</resources>
