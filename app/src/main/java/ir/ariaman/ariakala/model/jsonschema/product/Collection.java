@@ -1,10 +1,10 @@
 
-package ir.ariaman.ariakala.model.jsonschema;
+package ir.ariaman.ariakala.model.jsonschema.product;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Self {
+public class Collection {
 
     @SerializedName("href")
     @Expose
@@ -14,14 +14,14 @@ public class Self {
      * No args constructor for use in serialization
      *
      */
-    public Self() {
+    public Collection() {
     }
 
     /**
      *
      * @param href
      */
-    public Self(String href) {
+    public Collection(String href) {
         super();
         this.href = href;
     }
@@ -34,7 +34,7 @@ public class Self {
         this.href = href;
     }
 
-    public Self withHref(String href) {
+    public Collection withHref(String href) {
         this.href = href;
         return this;
     }

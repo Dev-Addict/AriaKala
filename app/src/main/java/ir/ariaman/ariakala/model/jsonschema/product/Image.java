@@ -1,5 +1,5 @@
 
-package ir.ariaman.ariakala.model.jsonschema;
+package ir.ariaman.ariakala.model.jsonschema.product;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

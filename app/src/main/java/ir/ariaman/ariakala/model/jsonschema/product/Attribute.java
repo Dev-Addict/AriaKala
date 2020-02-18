@@ -1,5 +1,5 @@
 
-package ir.ariaman.ariakala.model.jsonschema;
+package ir.ariaman.ariakala.model.jsonschema.product;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

@@ -2,8 +2,8 @@ package ir.ariaman.ariakala.model.retrofit;
 
 import java.util.List;
 
-import ir.ariaman.ariakala.model.jsonschema.Category;
-import ir.ariaman.ariakala.model.jsonschema.Product;
+import ir.ariaman.ariakala.model.jsonschema.category.Category;
+import ir.ariaman.ariakala.model.jsonschema.product.Product;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

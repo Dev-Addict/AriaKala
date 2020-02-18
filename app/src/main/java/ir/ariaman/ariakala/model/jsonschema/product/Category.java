@@ -1,5 +1,5 @@
 
-package ir.ariaman.ariakala.model.jsonschema;
+package ir.ariaman.ariakala.model.jsonschema.product;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -23,12 +23,6 @@ public class Category {
     public Category() {
     }
 
-    /**
-     *
-     * @param name
-     * @param id
-     * @param slug
-     */
     public Category(Integer id, String name, String slug) {
         super();
         this.id = id;

@@ -6,4 +6,7 @@
     <color name="colorDigitalRed">#EF394F</color>
     <color name="colorCloud">#FFF</color>
     <color name="colorDigitalGray">#757575</color>
+    <color name="colorSantaGray">#A1A1A6</color>
+    <color name="colorGunPowder">#464751</color>
+    <color name="colorSilverChalice">#A6A6A6</color>
 </resources>

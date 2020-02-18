@@ -2,8 +2,8 @@ package ir.ariaman.ariakala.model;
 
 import java.util.List;
 
-import ir.ariaman.ariakala.model.jsonschema.Category;
-import ir.ariaman.ariakala.model.jsonschema.Product;
+import ir.ariaman.ariakala.model.jsonschema.category.Category;
+import ir.ariaman.ariakala.model.jsonschema.product.Product;
 
 public class Repository {
     private static final Repository ourInstance = new Repository();

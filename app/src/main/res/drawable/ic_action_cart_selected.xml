@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+
+    <path
+        android:fillColor="@color/colorGunPowder"
+        android:pathData="M10,24a3,3,0,1,0,3,3A3,3,0,0,0,10,24Zm0,4a1,1,0,1,1,1-1A1,1,0,0,1,10,28Z" />
+    <path
+        android:fillColor="@color/colorGunPowder"
+        android:pathData="M22,24a3,3,0,1,0,3,3A3,3,0,0,0,22,24Zm0,4a1,1,0,1,1,1-1A1,1,0,0,1,22,28Z" />
+    <path
+        android:fillColor="@color/colorGunPowder"
+        android:pathData="M6.78,6,6.35,4.27A3,3,0,0,0,3.44,2H2V4H3.44a1,1,0,0,1,1,0.76L8,19.24H8l0.37,1.49A3,3,0,0,0,11.31,23H25V21H11.31a1,1,0,0,1-1-0.76l-0.12-0.5L25,16.25a3,3,0,0,0,2.23-2.19l2-8.06Zm18.55,7.58a1,1,0,0,1-0.75 0.73 L9.73,17.8,7.28,8H26.72Z" />
+</vector>
