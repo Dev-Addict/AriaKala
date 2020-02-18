@@ -89,7 +89,7 @@ public class LoadingService extends Service {
     private void initRetrofit() {
         dataService = RetrofitClientInstance.getRetrofitInstance()
                 .create(GetDataService.class);
-        productsCall = dataService.getProductsDatas();
+        productsCall = dataService.getProductsData();
         categoriesCall = dataService.getProductCategories();
     }
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,7 @@ public class CircularCategoriesAdapter extends RecyclerView.Adapter<CircularCate
     private Context context;
     private LayoutInflater inflater;
     private List<Category> categories;
+    private List<Integer> backgrounds;
 
     public CircularCategoriesAdapter(Context context) {
         this.context = context;
@@ -34,6 +36,12 @@ public class CircularCategoriesAdapter extends RecyclerView.Adapter<CircularCate
                 categories.add(category);
             }
         }
+        backgrounds = new ArrayList<>();
+        backgrounds.add(R.drawable.circle_image_view_bittersweet);
+        backgrounds.add(R.drawable.circle_image_view_portage);
+        backgrounds.add(R.drawable.circle_image_view_malibu);
+        backgrounds.add(R.drawable.circle_image_view_spray);
+        backgrounds.add(R.drawable.circle_image_view_tickle_me_pink);
     }
 
     @NonNull
@@ -45,6 +53,7 @@ public class CircularCategoriesAdapter extends RecyclerView.Adapter<CircularCate
 
     @Override
     public void onBindViewHolder(@NonNull CircularCategoriesViewHolder holder, int position) {
+        holder.imageView.setBackgroundResource(backgrounds.get(position % backgrounds.size()));
         Picasso
                 .with(context)
                 .load(categories.get(position).getImage().getSrc())
@@ -52,6 +61,7 @@ public class CircularCategoriesAdapter extends RecyclerView.Adapter<CircularCate
                 .placeholder(R.drawable.ic_action_loading)
                 .centerCrop().error(R.drawable.ic_action_error)
                 .into(holder.imageView);
+        holder.textView.setText(categories.get(position).getName());
     }
 
     @Override
@@ -61,10 +71,12 @@ public class CircularCategoriesAdapter extends RecyclerView.Adapter<CircularCate
 
     public class CircularCategoriesViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
+        TextView textView;
 
         public CircularCategoriesViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.circular_categories_item_image_view);
+            textView = itemView.findViewById(R.id.circular_categories_item_text_view);
         }
     }
 }

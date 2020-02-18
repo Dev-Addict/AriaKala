@@ -47,6 +47,15 @@ public class HomePageFragment extends Fragment {
 
     public void init(View view) {
         initSlider();
+        initCircularCategories();
+    }
+
+    private void initCircularCategories() {
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(
+                R.id.fragment_home_page_circular_categories_frame_layout,
+                CircularCategoriesFragment.newInstance())
+                .commit();
     }
 
     private void initSlider() {
