@@ -20,7 +20,7 @@ import java.util.List;
 import ir.ariaman.ariakala.R;
 import ir.ariaman.ariakala.adapter.SliderAdapter;
 
-public class HomePageSliderFragment extends Fragment {
+public class HomePageSliderFragment extends Fragment implements ViewPager.OnPageChangeListener {
     private ViewPager viewPager;
     private List<View> slides;
     private List<Integer> slidesBackgroundRes;
@@ -98,6 +98,7 @@ public class HomePageSliderFragment extends Fragment {
         viewPager.setClipToPadding(false);
         viewPager.setPadding(96, 0, 96, 0);
         viewPager.setPageMargin(48);
+        viewPager.setOnPageChangeListener(this);
     }
 
     private void goToNextPageAuto() {
@@ -121,5 +122,17 @@ public class HomePageSliderFragment extends Fragment {
     public void stopAutoPlay() {
         isPlaying = false;
         autoPlayHandler.removeCallbacks(runnable);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+    @Override
+    public void onPageSelected(int position) {}
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        stopAutoPlay();
+        startAutoPlay();
     }
 }

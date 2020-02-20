@@ -25,6 +25,12 @@
         <FrameLayout
             android:id="@+id/fragment_home_page_amazing_products_frame_layout"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_home_page_random_categories_block_frame_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>

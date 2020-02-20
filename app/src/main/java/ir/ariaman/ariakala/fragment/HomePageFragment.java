@@ -49,6 +49,7 @@ public class HomePageFragment extends Fragment {
         initSlider();
         initCircularCategories();
         initAmazingProducts();
+        initRandomCategoriesBlock();
     }
 
     private void initCircularCategories() {
@@ -73,6 +74,14 @@ public class HomePageFragment extends Fragment {
         fragmentTransaction.replace(
                 R.id.fragment_home_page_amazing_products_frame_layout,
                 ProductsHorizontalRecyclerFragment.newInstance())
+                .commit();
+    }
+
+    private void initRandomCategoriesBlock() {
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(
+                R.id.fragment_home_page_random_categories_block_frame_layout,
+                RandomCategoryBlockFragment.newInstance())
                 .commit();
     }
 }

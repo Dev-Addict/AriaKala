@@ -97,7 +97,8 @@ public class ProductsHorizontalAdapter
                     .load(product.getImages().get(0).getSrc())
                     .fit()
                     .placeholder(R.drawable.ic_action_loading)
-                    .centerCrop().error(R.drawable.ic_action_error)
+                    .centerCrop()
+                    .error(R.drawable.ic_action_error)
                     .into(holder.productImageImageView);
             if (parseHTML(product.getShortDescription()).equals("")) {
                 holder.productTitleTextView.setText(parseHTML(product.getShortDescription()));
