@@ -48,6 +48,7 @@ public class HomePageFragment extends Fragment {
     public void init(View view) {
         initSlider();
         initCircularCategories();
+        initAmazingProducts();
     }
 
     private void initCircularCategories() {
@@ -64,6 +65,14 @@ public class HomePageFragment extends Fragment {
         fragmentTransaction.replace(
                 R.id.fragment_home_page_slider_frame_layout,
                 HomePageSliderFragment.newInstance())
+                .commit();
+    }
+
+    private void initAmazingProducts() {
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(
+                R.id.fragment_home_page_amazing_products_frame_layout,
+                ProductsHorizontalRecyclerFragment.newInstance())
                 .commit();
     }
 }
