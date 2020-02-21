@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".fragment.RandomCategoryProductsTableFragment"
+    android:background="@color/colorCloud">
+
+    <TextView
+        android:id="@+id/fragment_random_category_products_table_category_title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:fontFamily="@font/iranian_sans"
+        android:text="Title"
+        android:textColor="@color/colorMineShaft"
+        android:layout_marginBottom="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/fragment_random_category_products_table_products_table_first_row_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/border_bottom_gray" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:layout_marginBottom="1dp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:background="@drawable/border_left_gray" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:background="@drawable/border_left_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_random_category_products_table_products_table_second_row_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/border_bottom_gray" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:layout_marginBottom="1dp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:background="@drawable/border_left_gray" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:background="@drawable/border_left_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_random_category_products_table_products_table_third_row_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:layout_marginBottom="1dp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:background="@drawable/border_left_gray" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"
+            android:background="@drawable/border_left_gray" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fragment_random_category_products_table_see_more_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/colorDigitalRed"
+        android:text="see more products  >" />
+
+</LinearLayout>
