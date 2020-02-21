@@ -18,4 +18,6 @@
     <color name="colorRedRibbon">#F80049</color>
     <color name="colorApple">#4CD137</color>
     <color name="colorMineShaft">#2D2D2D</color>
+    <color name="colorSilver">#C0C0C0</color>
+    <color name="colorCodGray">#121212</color>
 </resources>

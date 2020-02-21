@@ -59,6 +59,7 @@ public class HomePageFragment extends Fragment {
         initRandomCategoriesBlock();
         initRandomCategoryHorizontalProducts();
         initRandomCategoryProductTable();
+        initRandomCategoryProductsInRow();
     }
 
     private void initCircularCategories() {
@@ -97,6 +98,9 @@ public class HomePageFragment extends Fragment {
     private void initRandomCategoryHorizontalProducts() {
         List<Category> allCategories = Repository.getInstance().getCategories();
         allCategories.removeIf(category -> category.getId().equals(119));
+        if (allCategories.size() == 0) {
+            allCategories = Repository.getInstance().getCategories();
+        }
         Random random = new Random();
         int index = random.nextInt(allCategories.size());
         Category category = allCategories.get(index);
@@ -111,6 +115,9 @@ public class HomePageFragment extends Fragment {
     private void initRandomCategoryProductTable() {
         List<Category> allCategories = Repository.getInstance().getCategories();
         allCategories.removeIf(category -> usedCategoriesId.contains(category.getId()));
+        if (allCategories.size() == 0) {
+            allCategories = Repository.getInstance().getCategories();
+        }
         Random random = new Random();
         int index = random.nextInt(allCategories.size());
         Category category = allCategories.get(index);
@@ -119,6 +126,23 @@ public class HomePageFragment extends Fragment {
         fragmentTransaction.replace(
                 R.id.fragment_home_page_random_category_product_table_frame_layout,
                 RandomCategoryProductsTableFragment.newInstance(category.getId()))
+                .commit();
+    }
+
+    private void initRandomCategoryProductsInRow() {
+        List<Category> allCategories = Repository.getInstance().getCategories();
+        allCategories.removeIf(category -> usedCategoriesId.contains(category.getId()));
+        if (allCategories.size() == 0) {
+            allCategories = Repository.getInstance().getCategories();
+        }
+        Random random = new Random();
+        int index = random.nextInt(allCategories.size());
+        Category category = allCategories.get(index);
+        usedCategoriesId.add(category.getId());
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(
+                R.id.fragment_home_page_random_category_product_in_row_frame_layout,
+                RandomCategoryProductsInRowFragment.newInstance(category.getId()))
                 .commit();
     }
 }

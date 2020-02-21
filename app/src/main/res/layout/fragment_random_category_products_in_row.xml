@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    tools:context=".fragment.RandomCategoryProductsInRowFragment">
+
+    <LinearLayout
+        android:id="@+id/fragment_random_category_products_in_row_image_row_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fragment_random_category_products_in_row_category_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/iranian_sans"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:text="category >"
+        android:gravity="center"
+        android:background="@drawable/low_radius_bottom_gray"
+        android:textColor="@color/colorCodGray" />
+
+</LinearLayout>
