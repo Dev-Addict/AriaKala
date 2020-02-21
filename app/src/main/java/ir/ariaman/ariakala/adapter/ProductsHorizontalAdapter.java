@@ -22,6 +22,7 @@ import org.jsoup.Jsoup;
 import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -40,25 +41,52 @@ public class ProductsHorizontalAdapter
     private List<Product> products;
     private int cardWidth;
     private int cardHeight;
+    private int categoryID;
+    private ir.ariaman.ariakala.model.jsonschema.category.Category category;
+    private boolean isSomeCategory;
 
     public ProductsHorizontalAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         List<Product> allProducts = Repository.getInstance().getProducts();
-        allProducts.removeIf(product -> {
-            List<Category> categories = product.getCategories();
-            for (Category category : categories) {
-                if (category.getId() == 119) {
-                    return true;
+        List<Product> rightProducts = new ArrayList<>();
+        for (Product product : allProducts) {
+            for (Category category : product.getCategories()) {
+                if (category.getId().equals(119)) {
+                    rightProducts.add(product);
+                    break;
                 }
             }
-            return false;
-        });
-        Collections.shuffle(allProducts);
-        if (allProducts.size() >= 10) {
-            products = allProducts.subList(0, 10);
+        }
+        Collections.shuffle(rightProducts);
+        if (rightProducts.size() >= 10) {
+            products = rightProducts.subList(0, 10);
         } else {
-            products = allProducts.subList(0, allProducts.size());
+            products = rightProducts;
+        }
+    }
+
+    public ProductsHorizontalAdapter(Context context, int categoryID, ir.ariaman.ariakala.model.jsonschema.category.Category category) {
+        this.context = context;
+        this.categoryID = categoryID;
+        this.category = category;
+        isSomeCategory = true;
+        inflater = LayoutInflater.from(context);
+        List<Product> allProducts = Repository.getInstance().getProducts();
+        List<Product> rightProducts = new ArrayList<>();
+        for (Product product : allProducts) {
+            for (Category productCategory : product.getCategories()) {
+                if (productCategory.getId().equals(categoryID)) {
+                    rightProducts.add(product);
+                    break;
+                }
+            }
+        }
+        Collections.shuffle(rightProducts);
+        if (rightProducts.size() >= 10) {
+            products = rightProducts.subList(0, 10);
+        } else {
+            products = rightProducts;
         }
     }
 
@@ -84,12 +112,26 @@ public class ProductsHorizontalAdapter
             ((FrameLayout) seeAllView).getChildAt(0).setMinimumWidth(cardWidth);
             ((FrameLayout) seeAllView).getChildAt(0).setMinimumHeight(cardHeight);
             ((FrameLayout) holder.view).addView(seeAllView);
+            if (isSomeCategory) {
+                holder.view.setBackgroundResource(R.color.colorApple);
+            }
         } else if (position == 0) {
             ((FrameLayout) holder.view).removeAllViews();
             ((FrameLayout) holder.view).setPadding(0, 0, 0, 0);
             @SuppressLint("InflateParams") View seeMore =
                     inflater.inflate(R.layout.see_more_amazing_products, null);
             ((FrameLayout) holder.view).addView(seeMore);
+            if (isSomeCategory) {
+                TextView titleFirstPartTextView =
+                        seeMore.findViewById(
+                                R.id.see_more_amazing_products_title_first_part_text_view);
+                TextView titleSecondPartTextView =
+                        seeMore.findViewById(
+                                R.id.see_more_amazing_products_title_second_part_text_view);
+                titleFirstPartTextView.setText(this.category.getName());
+                titleSecondPartTextView.setVisibility(View.INVISIBLE);
+                seeMore.setBackgroundResource(R.color.colorApple);
+            }
         } else {
             Product product = products.get(position - 1);
             Picasso
@@ -123,6 +165,9 @@ public class ProductsHorizontalAdapter
             holder.productCurrentPriceTextView.setText(product.getPrice());
             cardWidth = holder.view.getWidth();
             cardHeight = holder.view.getHeight();
+            if (isSomeCategory) {
+                holder.view.setBackgroundResource(R.color.colorApple);
+            }
         }
     }
 

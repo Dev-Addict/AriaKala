@@ -15,6 +15,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/see_more_amazing_products_title_first_part_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
@@ -23,6 +24,7 @@
             android:textSize="36sp" />
 
         <TextView
+            android:id="@+id/see_more_amazing_products_title_second_part_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-15dp"

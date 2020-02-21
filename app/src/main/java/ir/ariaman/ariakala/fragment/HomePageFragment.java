@@ -13,8 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 import ir.ariaman.ariakala.R;
+import ir.ariaman.ariakala.model.Repository;
+import ir.ariaman.ariakala.model.jsonschema.category.Category;
 
 public class HomePageFragment extends Fragment {
     private FragmentManager fragmentManager;
@@ -46,10 +51,12 @@ public class HomePageFragment extends Fragment {
     }
 
     public void init(View view) {
+        fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
         initSlider();
         initCircularCategories();
         initAmazingProducts();
         initRandomCategoriesBlock();
+        initRandomCateogryHorizontalProducts();
     }
 
     private void initCircularCategories() {
@@ -61,7 +68,6 @@ public class HomePageFragment extends Fragment {
     }
 
     private void initSlider() {
-        fragmentManager = getActivity().getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(
                 R.id.fragment_home_page_slider_frame_layout,
@@ -82,6 +88,19 @@ public class HomePageFragment extends Fragment {
         fragmentTransaction.replace(
                 R.id.fragment_home_page_random_categories_block_frame_layout,
                 RandomCategoryBlockFragment.newInstance())
+                .commit();
+    }
+
+    private void initRandomCateogryHorizontalProducts() {
+        List<Category> allCategories = Repository.getInstance().getCategories();
+        allCategories.removeIf(category -> category.getId().equals(119));
+        Random random = new Random();
+        int index = random.nextInt(allCategories.size());
+        Category category = allCategories.get(index);
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(
+                R.id.fragment_home_page_random_category_horizontal_products_frame_layout,
+                ProductsHorizontalRecyclerFragment.newInstance(category.getId()))
                 .commit();
     }
 }
