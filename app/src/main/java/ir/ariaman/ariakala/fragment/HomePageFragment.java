@@ -3,6 +3,7 @@ package ir.ariaman.ariakala.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,6 +11,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.ScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +24,15 @@ import ir.ariaman.ariakala.model.Repository;
 import ir.ariaman.ariakala.model.jsonschema.category.Category;
 
 public class HomePageFragment extends Fragment {
+    private final static String PARAMS_SCROLL_VIEW_X = "SCROLL_VIEW_X";
+    private final static String PARAMS_SCROLL_VIEW_Y = "SCROLL_VIEW_Y";
+
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private List<Integer> usedCategoriesId;
+    private ScrollView scrollView;
+    private Bundle viewState;
+    private int scrollViewX, scrollViewY;
 
     public HomePageFragment() {
     }
@@ -46,11 +55,27 @@ public class HomePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-        init();
+        init(view);
         return view;
     }
 
-    public void init() {
+    public void init(View view) {
+        scrollView = view.findViewById(R.id.fragment_home_page_scroll_view);
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                ViewTreeObserver observer = scrollView.getViewTreeObserver();
+                observer.addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+                    @Override
+                    public void onScrollChanged() {
+                        scrollViewX = scrollView.getScrollX();
+                        scrollViewY = scrollView.getScrollY();
+                    }
+                });
+            }
+        });
+        scrollView.setVerticalScrollBarEnabled(false);
+        scrollView.setHorizontalScrollBarEnabled(false);
         usedCategoriesId = new ArrayList<>();
         fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
         initSlider();
@@ -100,8 +125,12 @@ public class HomePageFragment extends Fragment {
     }
 
     private void initRandomCategoryHorizontalProducts() {
-        List<Category> allCategories = Repository.getInstance().getCategories();
-        allCategories.removeIf(category -> category.getId().equals(119));
+        List<Category> allCategories = new ArrayList<>();
+        for (Category category : Repository.getInstance().getCategories()) {
+            if (!usedCategoriesId.contains(category.getId())) {
+                allCategories.add(category);
+            }
+        }
         if (allCategories.size() == 0) {
             allCategories = Repository.getInstance().getCategories();
         }
@@ -117,10 +146,11 @@ public class HomePageFragment extends Fragment {
     }
 
     private void initRandomCategoryProductTable() {
-        List<Category> allCategories = Repository.getInstance().getCategories();
-        allCategories.removeIf(category -> usedCategoriesId.contains(category.getId()));
-        if (allCategories.size() == 0) {
-            allCategories = Repository.getInstance().getCategories();
+        List<Category> allCategories = new ArrayList<>();
+        for (Category category : Repository.getInstance().getCategories()) {
+            if (!usedCategoriesId.contains(category.getId())) {
+                allCategories.add(category);
+            }
         }
         Random random = new Random();
         int index = random.nextInt(allCategories.size());
@@ -134,8 +164,12 @@ public class HomePageFragment extends Fragment {
     }
 
     private void initRandomCategoryProductTable(int frameId) {
-        List<Category> allCategories = Repository.getInstance().getCategories();
-        allCategories.removeIf(category -> usedCategoriesId.contains(category.getId()));
+        List<Category> allCategories = new ArrayList<>();
+        for (Category category : Repository.getInstance().getCategories()) {
+            if (!usedCategoriesId.contains(category.getId())) {
+                allCategories.add(category);
+            }
+        }
         if (allCategories.size() == 0) {
             allCategories = Repository.getInstance().getCategories();
         }
@@ -151,8 +185,12 @@ public class HomePageFragment extends Fragment {
     }
 
     private void initRandomCategoryProductsInRow() {
-        List<Category> allCategories = Repository.getInstance().getCategories();
-        allCategories.removeIf(category -> usedCategoriesId.contains(category.getId()));
+        List<Category> allCategories = new ArrayList<>();
+        for (Category category : Repository.getInstance().getCategories()) {
+            if (!usedCategoriesId.contains(category.getId())) {
+                allCategories.add(category);
+            }
+        }
         if (allCategories.size() == 0) {
             allCategories = Repository.getInstance().getCategories();
         }
@@ -168,8 +206,12 @@ public class HomePageFragment extends Fragment {
     }
 
     private void initRandomCategoryProductsInRow(int frameId) {
-        List<Category> allCategories = Repository.getInstance().getCategories();
-        allCategories.removeIf(category -> usedCategoriesId.contains(category.getId()));
+        List<Category> allCategories = new ArrayList<>();
+        for (Category category : Repository.getInstance().getCategories()) {
+            if (!usedCategoriesId.contains(category.getId())) {
+                allCategories.add(category);
+            }
+        }
         if (allCategories.size() == 0) {
             allCategories = Repository.getInstance().getCategories();
         }
@@ -182,5 +224,28 @@ public class HomePageFragment extends Fragment {
                 frameId,
                 RandomCategoryProductsInRowFragment.newInstance(category.getId()))
                 .commit();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        viewState = new Bundle();
+        viewState.putInt(PARAMS_SCROLL_VIEW_X, scrollViewX);
+        viewState.putInt(PARAMS_SCROLL_VIEW_Y, scrollViewY);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (viewState != null) {
+            scrollViewX = viewState.getInt(PARAMS_SCROLL_VIEW_X);
+            scrollViewY = viewState.getInt(PARAMS_SCROLL_VIEW_Y);
+            scrollView.scrollTo(scrollViewX, scrollViewY);
+        }
     }
 }

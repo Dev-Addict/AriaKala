@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -45,10 +46,18 @@ public class RandomCategoryBlockFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        List<Category> allCategories = Repository.getInstance().getCategories();
-        allCategories.removeIf(category -> category.getId() == 119);
+        List<Category> allCategories = new ArrayList<>();
+        for (Category category : Repository.getInstance().getCategories()) {
+            if (category.getId() != 119) {
+                allCategories.add(category);
+            }
+        }
         Collections.shuffle(allCategories);
-        categories = allCategories.subList(0, 4);
+        if (allCategories.size() >= 4) {
+            categories = allCategories.subList(0, 4);
+        } else {
+            categories = allCategories;
+        }
         if (getArguments() != null) {
         }
     }
@@ -77,7 +86,7 @@ public class RandomCategoryBlockFragment extends Fragment {
         backgrounds.add(R.drawable.slide_pink_background);
         backgrounds.add(R.drawable.slide_purple_background);
         backgrounds.add(R.drawable.slide_spray_background);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < categories.size(); i++) {
             blocks.get(i).setBackgroundResource(backgrounds.get(i));
             TextView categoryNameTextView =
                     blocks.get(i).findViewById(R.id.category_block_category_name_text_view);
@@ -96,5 +105,10 @@ public class RandomCategoryBlockFragment extends Fragment {
             frameLayouts.get(i).addView(blocks.get(i));
         }
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }

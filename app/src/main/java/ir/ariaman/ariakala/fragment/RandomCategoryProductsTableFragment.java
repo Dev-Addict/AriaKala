@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -132,5 +133,10 @@ public class RandomCategoryProductsTableFragment extends Fragment {
         int index = random.nextInt(categories.size());
         category = categories.get(index);
         categoryId = category.getId();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }

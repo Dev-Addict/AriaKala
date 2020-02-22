@@ -137,4 +137,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 tabsFragment.get(tabIndex))
                 .commit();
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 }

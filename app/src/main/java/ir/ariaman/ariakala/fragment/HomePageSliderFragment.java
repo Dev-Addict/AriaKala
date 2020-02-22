@@ -4,6 +4,7 @@ package ir.ariaman.ariakala.fragment;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -134,5 +135,10 @@ public class HomePageSliderFragment extends Fragment implements ViewPager.OnPage
     public void onPageScrollStateChanged(int state) {
         stopAutoPlay();
         startAutoPlay();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }
