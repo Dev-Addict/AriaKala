@@ -49,6 +49,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <FrameLayout
+            android:id="@+id/fragment_home_page_random_category_product_table_two_frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_home_page_random_category_product_in_row_two_frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
 </ScrollView>

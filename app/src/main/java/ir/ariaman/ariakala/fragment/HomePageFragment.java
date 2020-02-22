@@ -46,11 +46,11 @@ public class HomePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-        init(view);
+        init();
         return view;
     }
 
-    public void init(View view) {
+    public void init() {
         usedCategoriesId = new ArrayList<>();
         fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
         initSlider();
@@ -60,6 +60,10 @@ public class HomePageFragment extends Fragment {
         initRandomCategoryHorizontalProducts();
         initRandomCategoryProductTable();
         initRandomCategoryProductsInRow();
+        initRandomCategoryProductTable(
+                R.id.fragment_home_page_random_category_product_table_two_frame_layout);
+        initRandomCategoryProductsInRow(
+                R.id.fragment_home_page_random_category_product_in_row_two_frame_layout);
     }
 
     private void initCircularCategories() {
@@ -129,6 +133,23 @@ public class HomePageFragment extends Fragment {
                 .commit();
     }
 
+    private void initRandomCategoryProductTable(int frameId) {
+        List<Category> allCategories = Repository.getInstance().getCategories();
+        allCategories.removeIf(category -> usedCategoriesId.contains(category.getId()));
+        if (allCategories.size() == 0) {
+            allCategories = Repository.getInstance().getCategories();
+        }
+        Random random = new Random();
+        int index = random.nextInt(allCategories.size());
+        Category category = allCategories.get(index);
+        usedCategoriesId.add(category.getId());
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(
+                frameId,
+                RandomCategoryProductsTableFragment.newInstance(category.getId()))
+                .commit();
+    }
+
     private void initRandomCategoryProductsInRow() {
         List<Category> allCategories = Repository.getInstance().getCategories();
         allCategories.removeIf(category -> usedCategoriesId.contains(category.getId()));
@@ -142,6 +163,23 @@ public class HomePageFragment extends Fragment {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(
                 R.id.fragment_home_page_random_category_product_in_row_frame_layout,
+                RandomCategoryProductsInRowFragment.newInstance(category.getId()))
+                .commit();
+    }
+
+    private void initRandomCategoryProductsInRow(int frameId) {
+        List<Category> allCategories = Repository.getInstance().getCategories();
+        allCategories.removeIf(category -> usedCategoriesId.contains(category.getId()));
+        if (allCategories.size() == 0) {
+            allCategories = Repository.getInstance().getCategories();
+        }
+        Random random = new Random();
+        int index = random.nextInt(allCategories.size());
+        Category category = allCategories.get(index);
+        usedCategoriesId.add(category.getId());
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(
+                frameId,
                 RandomCategoryProductsInRowFragment.newInstance(category.getId()))
                 .commit();
     }

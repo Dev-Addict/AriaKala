@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -28,9 +29,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     private ArrayList<ImageView> tabsImageView;
     private ArrayList<TextView> tabsTextView;
     private ArrayList<Fragment> tabsFragment;
+    private ArrayList<Integer> tabsFragmentState;
     private FrameLayout fragmentFrameLayout;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+    private int lastFragmentIndex;
 
     public MainFragment() {
     }
@@ -70,6 +73,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         tabsImageView = new ArrayList<>();
         tabsTextView = new ArrayList<>();
         tabsFragment = new ArrayList<>();
+        tabsFragmentState = new ArrayList<>();
         tabsSelectedDrawableResId.add(R.drawable.ic_action_home_selected);
         tabsNotSelectedDrawableResId.add(R.drawable.ic_action_home_not_selected);
         tabsSelectedDrawableResId.add(R.drawable.ic_action_category_selected);
@@ -90,6 +94,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         tabsTextView.add(view.findViewById(R.id.fragment_main_category_text_view));
         tabsTextView.add(view.findViewById(R.id.fragment_main_cart_text_view));
         tabsTextView.add(view.findViewById(R.id.fragment_main_user_text_view));
+        tabsFragmentState.add(0);
+        tabsFragmentState.add(0);
+        tabsFragmentState.add(0);
+        tabsFragmentState.add(0);
+        lastFragmentIndex = 0;
         for (LinearLayout linearLayout : tabsLinearLayout) {
             linearLayout.setOnClickListener(this);
         }
